@@ -110,7 +110,14 @@ $( document ).ready(function()
                 if ( typeof response.success !== 'undefined' && response.success == 'email sent' )
                 {
                     $form.fadeOut().before( '<div class="form-success" style="display: none;"><p>Thanks for your message, I will get back to you soon.</p></div>' );
-                    setTimeout( function(){ $('.form-success').fadeIn() },600 );
+                    setTimeout
+                    (
+                        function() {
+                            $('.form-success').fadeIn();
+                            gumshoe.setDistances();
+                        },
+                        600
+                    );
                 }
             });
 
