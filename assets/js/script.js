@@ -65,17 +65,17 @@ $( document ).ready(function()
         },
         submitHandler: function( form )
         {
-            var $form         = $(form);
-            var $inputs       = $form.find( 'input,textarea,button' );
-            var sData         = $form.serializeArray();
-            var honeypot      = false;
-            var honeypotIndex = -1;
+            var $form          = $(form);
+            var $inputs        = $form.find( 'input,textarea,button' );
+            var sData          = $form.serializeArray();
+            var honeypotFilled = false;
+            var honeypotIndex  = -1;
 
             $.each( sData,function( i,field ) {
                 if ( field.name == 'fax' ) {
                     // Flag as spam if filled
                     if ( field.value !== '' ) {
-                        honeypot = true;
+                        honeypotFilled = true;
                     }
                     // Store index
                     honeypotIndex = i;
@@ -94,41 +94,49 @@ $( document ).ready(function()
             sData.push( { name : '_subject', value : 'New justcarpentry.net Contact Form Enquiry' } );
             sData.push( { name : '_format' , value : 'plain' } );
 
-            if ( honeypot ) { // Convert honeypot field to formspree.io format
-                sData.push( { name : '_gotcha', value : '012345' } );
+            if ( !honeypotFilled ) { // Handle submission
+                var request = $.ajax({
+                    url  : 'https://formspree.io/f/xvoynked',
+                    type : 'post',
+                    data : sData,
+                    dataType: 'json'
+                });
+
+                // Success
+                request.done( function ( response ) {
+                    if ( typeof response.ok !== 'undefined' && response.ok === true )
+                    {
+                        $form.fadeOut().before( '<div class="form-success" style="display: none;"><p>Thanks for your message, I will get back to you soon.</p></div>' );
+                        setTimeout
+                        (
+                            function() {
+                                $('.form-success').fadeIn();
+                                gumshoe.setDistances();
+                            },
+                            600
+                        );
+                    }
+                });
+
+                // Failure
+                request.fail( function ( jqXHR,textStatus,errorThrown ) {
+                    alert( 'Error submitting form, please try again.' );
+                });
+
+                request.always( function () {
+                    $inputs.prop( 'disabled',false );
+                });
+            } else { // Feign success
+                $form.fadeOut().before( '<div class="form-success" style="display: none;"><p>Thanks for your message, I will get back to you soon.</p></div>' );
+                setTimeout
+                (
+                    function() {
+                        $('.form-success').fadeIn();
+                        gumshoe.setDistances();
+                    },
+                    600
+                );
             }
-
-            var request = $.ajax({
-                url  : 'https://formspree.io/info@justcarpentry.net',
-                type : 'post',
-                data : sData,
-                dataType: 'json'
-            });
-
-            // Success
-            request.done( function ( response ) {
-                if ( typeof response.success !== 'undefined' && response.success == 'email sent' )
-                {
-                    $form.fadeOut().before( '<div class="form-success" style="display: none;"><p>Thanks for your message, I will get back to you soon.</p></div>' );
-                    setTimeout
-                    (
-                        function() {
-                            $('.form-success').fadeIn();
-                            gumshoe.setDistances();
-                        },
-                        600
-                    );
-                }
-            });
-
-            // Failure
-            request.fail( function ( jqXHR,textStatus,errorThrown ) {
-                alert( 'Error submitting form, please try again.' );
-            });
-
-            request.always( function () {
-                $inputs.prop( 'disabled',false );
-            });
         }
     });
 
