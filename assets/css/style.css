@@ -234,6 +234,8 @@ header .intro-text {
 	padding: 50px 0;
 }
 #about .get-in-touch a {
+	display: inline-block;
+	text-align: center;
 	text-transform: uppercase;
 	color: #fff;
 	background-color: #121d1f;
@@ -248,6 +250,14 @@ header .intro-text {
 	border-color: #FFF;
 	background-color: #2ab34b;
 	color: #FFF;
+}
+br.mobile-only {
+	display: inline;
+}
+@media (min-width: 768px) {
+	br.mobile-only {
+		display: none;
+	}
 }
 p {
 	line-height: 1.3;
