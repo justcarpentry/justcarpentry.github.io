@@ -216,6 +216,9 @@ header .intro-text {
 	}
 }
 /* About Section */
+#about {
+	min-height: 80vh;
+}
 #about .about-text {
 	margin-left: 10px;
 	text-align: center;
@@ -370,12 +373,17 @@ ol.filters li label.active {
 /* Contact Section */
 #contact {
 	padding-bottom: 40px;
+	min-height: 80vh;
 }
 #contact .contact-form {
 	min-height: 500px;
 }
 #contact .section-title.center {
 	padding: 10px 0 20px 0;
+}
+#contact .section-title p {
+	margin: 50px 0 40px;
+	font-size: 18px;
 }
 #contact .icon-mail, #contact .icon-phone {
 	font-size: 200%;
@@ -389,7 +397,7 @@ ol.filters li label.active {
 }
 #contact h3 {
 	padding-top: 20px;
-	font-size: 20px;
+	font-size: 22px;
 	font-weight: 400;
 }
 #contact p.warning {
