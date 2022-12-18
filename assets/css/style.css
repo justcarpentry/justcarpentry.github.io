@@ -371,15 +371,12 @@ ol.filters li label.active {
 	opacity: 1;
 }
 /* Contact Section */
-#contact {
-	padding-bottom: 40px;
-	min-height: 80vh;
-}
 #contact .contact-form {
-	min-height: 500px;
+	min-height: 600px;
+	padding-top: 40px;
 }
 #contact .section-title.center {
-	padding: 10px 0 20px 0;
+	padding: 40px 0;
 }
 #contact .section-title p {
 	margin: 50px 0 40px;
