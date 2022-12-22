@@ -323,7 +323,13 @@ ol.filters li label.active {
 	border: 1px solid #222;
 }
 .portfolio-item {
+    width: 100%;
 	margin-bottom: 30px;
+}
+@media (min-width: 768px) {
+    .portfolio-item {
+        width: auto;
+    }
 }
 .portfolio-item .hover-bg {
 	height: 170px;
