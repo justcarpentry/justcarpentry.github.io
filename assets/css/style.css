@@ -370,6 +370,15 @@ ol.filters li label.active {
 .hover-bg:hover .hover-text {
 	opacity: 1;
 }
+@media (max-width: 768px) {
+	.portfolio-item .hover-bg {
+		height: auto;
+		overflow: visible;
+	}
+	.hover-bg .img-responsive {
+		max-width: 100%;
+	}
+}
 /* Contact Section */
 #contact .contact-form {
 	min-height: 600px;
