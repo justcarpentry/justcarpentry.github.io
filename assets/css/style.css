@@ -326,48 +326,49 @@ ol.filters li label.active {
     width: 100%;
 	margin-bottom: 30px;
 }
-@media (min-width: 768px) {
-    .portfolio-item {
-        width: auto;
-    }
-}
 .portfolio-item .hover-bg {
-	height: 170px;
-	overflow: hidden;
-	position: relative;
+	background-color: #EEE;
+	height: auto;
+	overflow: visible;
 }
 .hover-bg .hover-text {
-	position: absolute;
+	z-index: 20;
 	text-align: center;
 	margin: 0 auto;
 	color: #ffffff;
 	background: rgba(0, 0, 0, 0.66);
-	padding: 17% 0 0 0;
+	padding: 0;
 	height: 100%;
 	width: 100%;
 	opacity: 0;
 	transition: all 0.5s;
 }
-.hover-bg .hover-text>h4 {
+.hover-bg .hover-text .label {
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.hover-bg .hover-text .label>h4 {
 	opacity: 0;
 	-webkit-transform: translateY(100%);
 	transform: translateY(100%);
 	transition: all 0.3s;
 	color: #ffffff;
 }
-.hover-bg:hover .hover-text>h4 {
+.hover-bg:hover .hover-text .label>h4 {
 	opacity: 1;
 	-webkit-backface-visibility: hidden;
 	-webkit-transform: translateY(0);
 	transform: translateY(0);
 }
-.hover-bg .hover-text>i {
+.hover-bg .hover-text .label>i {
 	opacity: 0;
 	-webkit-transform: translateY(0);
 	transform: translateY(0);
 	transition: all 0.3s;
 }
-.hover-bg:hover .hover-text>i {
+.hover-bg:hover .hover-text .label>i {
 	opacity: 1;
 	-webkit-backface-visibility: hidden;
 	-webkit-transform: translateY(100%);
@@ -376,13 +377,36 @@ ol.filters li label.active {
 .hover-bg:hover .hover-text {
 	opacity: 1;
 }
-@media (max-width: 768px) {
+.hover-bg .img-responsive {
+	max-width: 100%;
+}
+@media (min-width: 768px) {
+	.portfolio-item {
+		width: auto;
+	}
 	.portfolio-item .hover-bg {
-		height: auto;
-		overflow: visible;
+		height: 460px;
+		overflow: hidden;
+		position: relative;
+	}
+	.hover-bg .hover-text {
+		position: absolute;
 	}
 	.hover-bg .img-responsive {
-		max-width: 100%;
+		position: absolute;
+		z-index: 10;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+@media (min-width: 992px) {
+	.portfolio-item .hover-bg {
+		height: 280px;
+	}
+}
+@media (min-width: 1200px) {
+	.portfolio-item .hover-bg {
+		height: 350px;
 	}
 }
 /* Contact Section */
